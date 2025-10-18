@@ -3,43 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Галерея</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Страница с картами и картинками</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    .block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .images {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .images img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .map {
+      width: 100%;
+      height: 300px;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .block {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <header>
-    <h1>Галерея и карты</h1>
-  </header>
+  <h1>Моя страница с картами и фотографиями</h1>
 
-  <!-- Галерея -->
-  <section class="gallery">
-      <img src="images/сберегательная_касса_2_4.jpg" alt="Фото 1">
-      <img src="images/mixxStore_2.JPG" alt="Фото 2">
-      <img src="images/mixxStore_3.jpg" alt="Фото 3">
-  </section>
-
-  <!-- Встроенная карта -->
-  <section class="map">
-    <h2>Местоположение</h2>
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!4v1758968509129!6m8!1m7!1sXAHSPU3e-FD3EgDj9JEf3A!2m2!1d42.87543438959673!2d74.58581650906005!3f167.87!4f4.5!5f1.3357038177820932"
-      width="600"
-      height="450"
-      style="border:0;"
-      allowfullscreen=""
-      loading="lazy">
-    </iframe>
-  </section>
-
-  <!-- Ссылки -->
+  <!-- Первый блок -->
   <section>
-    <h2>Полезные ссылки</h2>
-    <ul>
-      <li><a href="https://www.bbc.com/" target="_blank">BBC</a></li>
-      <li><a href="https://www.nytimes.com/" target="_blank">New York Times</a></li>
-      <li><a href="https://tass.ru/" target="_blank">ТАСС</a></li>
-    </ul>
+    <div class="block">
+      <div class="images">
+        <img src="images/mixxStore_2.JPG" alt="Фото 1">
+        <img src="images/mixxStore_3.JPG" alt="Фото 2">
+      </div>
+      <iframe class="map"
+        src="https://www.google.com/maps/embed?pb=!4v1758968509129!6m8!1m7!1sXAHSPU3e-FD3EgDj9JEf3A!2m2!1d42.87543438959673!2d74.58581650906005!3f167.87!4f4.5!5f1.3357038177820932"
+        allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <p>Это описание к первой фотографии и карте. Текст идёт ниже.</p>
+  </section>
+
+  <!-- Второй блок -->
+  <section>
+    <div class="block">
+      <div class="images">
+        <img src="images/академия_наук_2_1.jpg" alt="Фото 2">
+        <img src="images/академия_наук_2_2.jpg" alt="Фото 3">
+        <img src="images/академия_наук_2_3.jpg" alt="Фото 3">
+        <img src="images/академия_наук_2_4.jpg" alt="Фото 3">
+        <img src="images/академия_наук_2_5.jpg" alt="Фото 3">
+        <img src="images/академия_наук_2_6.jpg" alt="Фото 3">
+        <img src="images/академия_наук_2_7.jpg" alt="Фото 3">
+        <img src="images/академия_наук_2_8.jpg" alt="Фото 3">
+      </div>
+      <iframe class="map"
+        src="https://maps.app.goo.gl/ni33HqYkMuLm5Z8QA"
+        allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <p>Здесь три фотографии, карта и текст ниже.</p>
+  </section>
+
+  <!-- Третий блок -->
+  <section>
+    <div class="block">
+      <div class="images">
+        <img src="images/сберегательная_касса_2_4.jpg" alt="Фото 5">
+      </div>
+      <iframe class="map"
+        src="https://www.google.com/maps/embed?pb=!4v1759036155945!6m8!1m7!1saI50uEC86z5FMiCGN35nwQ!2m2!1d42.88060427575697!2d74.61142293460337!3f181.27!4f-6.6299999999999955!5f0.7820865974627469" width="200" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="400" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <p>фотография + карта + текст.</p>
   </section>
 
 </body>
