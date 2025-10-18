@@ -64,7 +64,6 @@
     }
   </style>
 </head>
-<script src="carousel.js"></script>
 <body>
 
   <h1>Моя страница с картами и фотографиями</h1>
@@ -74,11 +73,7 @@
     <div class="block">
       <div class="carousel">
         <div class="slide active"><img src="images/mixxStore_2.jpg"></div>
-        <div class="slide"><img src="images/академия_наук_2_1.jpg"></div>
-      </div>
-      <div class="images">
-        <img src="images/mixxStore_2.JPG" alt="Фото 1">
-        <img src="images/mixxStore_3.JPG" alt="Фото 2">
+        <div class="slide"><img src="images/mixxStore_3.jpg"></div>
       </div>
       <iframe class="map"
         src="https://www.google.com/maps/embed?pb=!4v1758968509129!6m8!1m7!1sXAHSPU3e-FD3EgDj9JEf3A!2m2!1d42.87543438959673!2d74.58581650906005!3f167.87!4f4.5!5f1.3357038177820932"
@@ -86,5 +81,25 @@
     </div>
     <p>Это описание к первой фотографии и карте. Текст идёт ниже.</p>
   </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.slide');
+      let current = 0;
+
+      function showSlide(next) {
+        slides.forEach((s, i) => {
+          s.classList.remove('active');
+          if (i === next) s.classList.add('active');
+        });
+      }
+
+      slides.forEach(slide => {
+        slide.addEventListener('click', () => {
+          current = (current + 1) % slides.length;
+          showSlide(current);
+        });
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,7 +1,5 @@
 <script>
-const carousel = document.querySelector('.carousel');
 const slides = document.querySelectorAll('.slide');
-let startX = 0;
 let current = 0;
 
 function showSlide(i) {
@@ -9,18 +7,11 @@ function showSlide(i) {
   slides[i].classList.add('active');
 }
 
-// свайпы
-carousel.addEventListener('touchstart', e => startX = e.touches[0].clientX);
-carousel.addEventListener('touchend', e => {
-  const endX = e.changedTouches[0].clientX;
-  if (startX - endX > 50) current = (current + 1) % slides.length;
-  if (endX - startX > 50) current = (current - 1 + slides.length) % slides.length;
-  showSlide(current);
-});
-
-// клики
-carousel.addEventListener('click', () => {
-  current = (current + 1) % slides.length;
-  showSlide(current);
+// переход на следующий кадр по клику на любой слайд
+slides.forEach(slide => {
+  slide.addEventListener('click', () => {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  });
 });
 </script>
