@@ -37,7 +37,7 @@
       position: relative;
       overflow: hidden;
       width: 100%;
-      height: 400px;
+      height: 600px;
     }
 
     .slide {
@@ -79,19 +79,27 @@
 
     .map {
       width: 100%;
-      height: 400px;
+      height: 600px;
       border-radius: 8px;
+    }
+
+    .big-text {
+      font-size: 20px; /* размер шрифта */
     }
 
     @media (max-width: 768px) {
       .block {
         grid-template-columns: 1fr;
       }
+
+      .carousel,
+      .map {
+        height: 400px;
+      }
+
     }
 
-    .big-text {
-      font-size: 20px; /* размер шрифта */
-    }
+
   </style>
 </head>
 <body>
@@ -105,7 +113,7 @@
     <div class="block">
       <div class="carousel">
         <div class="slide active">
-            <img src="images/mixxStore_3.jpg">
+            <img src="images/mixxStore_3_cut.jpg">
             <div class="caption">Лето 2025</div>
         </div>
         <div class="slide">
