@@ -34,4 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
       showSlide(current);
     });
   });
+      // фото в оригинальном размере
+    document.getElementById('toggleSize').addEventListener('click', () => {
+      const block = document.querySelector('.block'); // или другой родитель
+      block.classList.toggle('fullsize');
+    });
+    const button = document.getElementById('toggleFullsize');
+    const wrappers = document.querySelectorAll('.img-wrapper');
+
+    button.addEventListener('click', () => {
+      wrappers.forEach(wrapper => wrapper.classList.toggle('fullsize-wrapper'));
+    });
 });

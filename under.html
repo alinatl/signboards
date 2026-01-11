@@ -60,11 +60,17 @@
       gap: 20px;
     }
 
+    .content {
+      max-width: 100px;   /* ← вот тут реальное ограничение */
+      width: 100%;
+      margin: 0 auto;     /* центр */
+    }
+
     .carousel {
       position: relative;
       overflow: hidden;
       width: 100%;
-      height: 600px;
+      aspect-ratio: 3 / 4; #height: 600px;
     }
 
     .slide {
@@ -94,6 +100,12 @@
       position: relative;
       width: 100%;
       height: 100%;
+    }
+
+    .slide,
+    .img-wrapper {
+      position: absolute;
+      inset: 0;
     }
 
     .img-wrapper img {
@@ -156,6 +168,13 @@
       margin: 0 auto;       /* центрирование горизонтально */
     }
 
+    .map {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 8px;
+      display: block;
+    }
+
     .big-text {
       font-size: 20px; /* размер шрифта */
     }
@@ -183,6 +202,7 @@
 
   <!-- Первый блок -->
   <section>
+    <div class="content">
       <div class="carousel">
         <div class="slide active">
           <div class="img-wrapper">
@@ -199,11 +219,10 @@
         <div class="dots"></div>  <!-- контейнер для точек -->
       </div>
 
-      <p class="big-text">Здесь можно вставить текст между каруселью и картой.</p>
-
       <iframe class="map"
         src="https://www.google.com/maps/embed?pb=!4v1762074495807!6m8!1m7!1s1ERPdw_zCGRC7J1KJfOrHw!2m2!1d42.87542940997766!2d74.58595307769701!3f160.8419115838219!4f0.6999427996125291!5f3.276484656830229"
         allowfullscreen="" loading="lazy"></iframe>
+    </div>
   </section>
   <script>
     document.addEventListener('DOMContentLoaded', () => {

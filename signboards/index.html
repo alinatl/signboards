@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Вывески Бишкека — Эволюция дизайна</title>
+
+<style>
+/* Импорт шрифтов */
+@font-face {
+  font-family: 'SovietStyleCyrilic';
+  src: url('../../fonts/SovietStyleCyrilic-Regular.woff') format('woff');
+  font-display: swap;
+}
+
+:root {
+  --bg-main: #fbfbfb;           /* Основной светлый фон */
+  --accent-red: #CC0000;         /* Фирменный красный */
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --text-main: #1a1a1a;          /* Темный текст */
+  --text-dim: #666;              /* Серый текст */
+  --card-bg: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Фоновая текстура */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("../../images/background.jpg") center / cover no-repeat;
+  opacity: 0.15;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ===== ХЕДЕР ===== */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  backdrop-filter: blur(20px);
+  background: var(--glass-bg);
+  border-bottom: 1px solid var(--glass-border);
+  z-index: 1000;
+}
+
+header.hidden { transform: translateY(-100%); }
+
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: 'SovietStyleCyrilic', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  color: var(--accent-red);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+/* ===== КОНТЕНТ ===== */
+main { padding-top: 100px; }
+
+/* ===== HERO SECTION ===== */
+.hero {
+  max-width: 1400px;
+  margin: 0 auto 80px;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-text h1 {
+  font-family: 'SovietStyleCyrilic', sans-serif;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  line-height: 0.95;
+  margin: 0 0 1.5rem 0;
+  color: var(--text-main);
+}
+
+.hero-text p.big-text {
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  max-width: 500px;
+  border-left: 4px solid var(--accent-red);
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+/* ===== КАРУСЕЛЬ ===== */
+.carousel {
+  position: relative;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  background: #eee;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 0.8s ease, transform 1.2s ease;
+}
+
+.slide.active { opacity: 1; transform: scale(1); }
+
+.slide img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
+
+.caption {
+  position: absolute;
+  left: 20px; bottom: 20px;
+  background: var(--accent-red);
+  color: #fff;
+  padding: 8px 16px;
+  font-family: 'SovietStyleCyrilic', sans-serif;
+  font-size: 1.1rem;
+  z-index: 10;
+}
+
+/* ===== ГАЛЕРЕЯ (МАСОНРИ) ===== */
+.gallery {
+  max-width: 1400px;
+  margin: 0 auto 100px;
+  padding: 0 2rem;
+}
+
+.masonry {
+  columns: 3 300px;
+  column-gap: 25px;
+}
+
+.card {
+  break-inside: avoid;
+  margin-bottom: 25px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+
+  view-timeline-name: --card-reveal;
+  view-timeline-axis: block;
+  animation: reveal linear both;
+  animation-timeline: --card-reveal;
+  animation-range: entry 5% cover 25%;
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card img { width: 100%; display: block; cursor: zoom-in; }
+.card:hover img { transform: scale(1.03); }
+
+.card span {
+  display: block;
+  padding: 15px;
+  font-family: 'SovietStyleCyrilic', sans-serif;
+  font-size: 1.3rem;
+  background: #fff;
+  border-top: 1px solid var(--glass-border);
+}
+
+/* ===== КАРТА ===== */
+.map-section {
+  background: #d1d1d1;
+  padding: 80px 0;
+  border-top: 1px solid var(--glass-border);
+}
+
+.map-inner { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+
+.map-inner p {
+  font-family: 'SovietStyleCyrilic', sans-serif;
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  color: var(--accent-red);
+}
+
+.map {
+  width: 100%;
+  height: 450px;
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  background: #fff;
+}
+
+/* ===== НАВИГАЦИЯ ===== */
+.navigation {
+  max-width: 1400px;
+  margin: 100px auto;
+  padding: 0 2rem;
+}
+
+.navigation h2 {
+  font-family: 'SovietStyleCyrilic', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.nav-card {
+  background: #fff;
+  border: 1px solid var(--glass-border);
+  padding: 30px;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.nav-card:hover {
+  border-color: var(--accent-red);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.nav-card span {
+  font-family: 'SovietStyleCyrilic', sans-serif;
+  color: var(--accent-red);
+  font-size: 1.7rem;
+}
+
+.nav-card h3 { margin: 10px 0 0; font-size: 1.2rem; }
+
+/* ===== LIGHTBOX ===== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  cursor: zoom-out;
+}
+
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90%; max-height: 85%; object-fit: contain; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+
+/* ===== МЕНЮ ===== */
+.burger {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--text-main);
+}
+
+.menu {
+  position: fixed;
+  top: 75px; right: 2rem;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.menu.open { display: flex; }
+.menu a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-family: 'SovietStyleCyrilic', sans-serif;
+  font-size: 1.5rem;
+}
+.menu a:hover { color: var(--accent-red); }
+
+
+
+/* ===== DISCOVERY CLOUD STYLES ===== */
+.tag-cloud-container {
+  max-width: 1400px;
+  margin: 80px auto 120px;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.tag-cloud-title {
+  font-family: 'SovietStyleCyrilic', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  perspective: 1000px;
+}
+
+/* Основной стиль "пилюли" */
+.tag {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.5); /* Glassmorphism */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  padding: 10px 24px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+/* Размеры шрифтов для эффекта облака */
+.tag.size-s { font-size: 0.85rem; padding: 8px 18px; opacity: 0.8; }
+.tag.size-m { font-size: 1.1rem; padding: 12px 28px; }
+.tag.size-l { font-size: 1.4rem; padding: 14px 35px; font-weight: 600; }
+
+/* Ховер-эффект */
+.tag:hover {
+  background: var(--accent-red);
+  color: #ffffff !important;
+  border-color: var(--accent-red);
+  transform: scale(1.1) translateY(-5px);
+  box-shadow: 0 10px 25px rgba(204, 0, 0, 0.3);
+  z-index: 10;
+  animation-play-state: paused; /* Останавливаем плавание при наведении */
+}
+
+/* Анимация "плавания" (Floating) */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-6px) rotate(1deg); }
+  66% { transform: translateY(4px) rotate(-1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Разные скорости для естественного вида */
+.anim-1 { animation: float 5s ease-in-out infinite; }
+.anim-2 { animation: float 7s ease-in-out infinite; animation-delay: 1s; }
+.anim-3 { animation: float 6s ease-in-out infinite; animation-delay: 0.5s; }
+
+
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 992px) {
+  .hero { grid-template-columns: 1fr; }
+  .carousel { height: 400px; }
+  .masonry { columns: 2; }
+}
+
+@media (max-width: 600px) {
+  .masonry { columns: 1; }
+  .hero-text h1 { font-size: 3rem; }
+}
+
+/* cloud */
+@media (max-width: 768px) {
+  .tag-cloud-title { font-size: 1.8rem; }
+  .tag.size-l { font-size: 1.1rem; padding: 10px 22px; }
+  .tag.size-m { font-size: 0.9rem; }
+}
+</style>
+</head>
+
+<body>
+
+<header id="nav">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">Бишкек • Вывески</a>
+    <button class="burger" id="burgerBtn">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="menu" id="mobileMenu">
+      <a href="../signboards/index.html">Вывески</a>
+      <a href="../mosaics/index.html">Мозаики</a>
+      <a href="../index.html">О проекте</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Киевская д155</h1>
+      <p class="big-text">
+        Эволюция вывесок и дизайна. Красивый пример того, как простая вывеска может передавать дух эпохи сквозь десятилетия.
+      </p>
+    </div>
+    <div class="carousel">
+      <div class="slide active">
+        <img src="../images/mixxStore_3_cut.jpg" alt="Лето 2025">
+        <div class="caption">ЛЕТО 2025</div>
+      </div>
+      <div class="slide">
+        <img src="../images/mixxStore_2.JPG" alt="Осень 2023">
+        <div class="caption">ОСЕНЬ 2023</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="masonry">
+      <div class="card"><img src="../images/mixxStore_3_cut.jpg"><span>ЛЕТО 2025</span></div>
+      <div class="card"><img src="../images/mixxStore_2.JPG"><span>ОСЕНЬ 2023</span></div>
+    </div>
+  </section>
+
+  <section class="map-section">
+    <div class="map-inner">
+      <p>// ТЕЛЕПОРТ В 2015 </p>
+      <iframe class="map"
+        src="https://www.google.com/maps/embed?pb=!4v1762074495807!6m8!1m7!1s1ERPdw_zCGRC7J1KJfOrHw!2m2!1d42.87542940997766!2d74.58595307769701!3f160.84!4f0.7!5f3.27"
+        loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+
+  <!-- SECTION: DISCOVERY CLOUD -->
+<section class="tag-cloud-container">
+  <h2 class="tag-cloud-title">СВЯЗАННЫЕ СОБЫТИЯ</h2>
+
+  <div class="tag-cloud">
+    <a href="#" class="tag size-m anim-1">Никаких не нашлось :(</a>
+<!--    <a href="#" class="tag size-l anim-2">Советский Модернизм</a>-->
+<!--    <a href="#" class="tag size-s anim-3">Типографика</a>-->
+<!--    <a href="#" class="tag size-m anim-1">1970-е</a>-->
+<!--    <a href="#" class="tag size-l anim-2">Мозаика</a>-->
+<!--    <a href="#" class="tag size-s anim-3">Вывески</a>-->
+<!--    <a href="#" class="tag size-m anim-1">Дизайн Города</a>-->
+<!--    <a href="#" class="tag size-l anim-2">Архитектура</a>-->
+<!--    <a href="#" class="tag size-s anim-3">История</a>-->
+<!--    <a href="#" class="tag size-m anim-1">ЦУМ</a>-->
+<!--    <a href="#" class="tag size-l anim-2">Киевская</a>-->
+<!--    <a href="#" class="tag size-s anim-3">Реставрация</a>-->
+  </div>
+</section>
+
+  <section class="navigation">
+    <h2>На что поглазеть?</h2>
+    <div class="nav-grid">
+      <a class="nav-card" href="./1.html"><span>01 / ВЫВЕСКИ</span><h3>Идем к следующей вывеске!</h3></a>
+      <a class="nav-card" href="../mosaics/index.html"><span>02 / МОЗАИКИ</span><h3>Изучить мозаики</h3></a>
+      <a id="randomLink" class="nav-card" href="#"><span>03 / РАНДОМ</span><h3>Показать случайный объект</h3></a>
+      <a class="nav-card" href="../index.html"><span>04 / ИНФО. ГЛАВНАЯ</span><h3>Манифест проекта</h3></a>
+    </div>
+  </section>
+</main>
+
+<div class="lightbox" id="lightbox"><img src=""></div>
+
+<script>
+// 1. Исчезающий хедер
+let lastScroll = 0;
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  const currentScroll = window.scrollY;
+  if (currentScroll > lastScroll && currentScroll > 100) {
+    nav.classList.add('hidden');
+  } else {
+    nav.classList.remove('hidden');
+  }
+  lastScroll = currentScroll;
+});
+
+// 2. Авто-карусель
+const slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+setInterval(() => {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}, 5000);
+
+// 3. Лайтбокс
+const lightbox = document.getElementById('lightbox');
+const lbImg = lightbox.querySelector('img');
+document.querySelectorAll('img').forEach(img => {
+  img.addEventListener('click', () => {
+    if(img.closest('.lightbox')) return;
+    lbImg.src = img.src;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+lightbox.addEventListener('click', () => {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = 'auto';
+});
+
+// 4. Меню
+const burgerBtn = document.getElementById('burgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+burgerBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  mobileMenu.classList.toggle('open');
+});
+document.addEventListener('click', () => mobileMenu.classList.remove('open'));
+
+
+<!--загрузка рандомной ссылки-->
+const randomLink = document.getElementById('randomLink');
+
+fetch('/pages.json') // или '/pages.js', если подключён как <script src="pages.js">
+  .then(res => res.json())
+  .then(pages => {
+    // выбираем случайную ссылку при загрузке
+    const randomIndex = Math.floor(Math.random() * pages.length);
+    randomLink.href = pages[randomIndex];
+
+    // опционально: при клике менять на новую случайную ссылку
+    randomLink.addEventListener('click', (e) => {
+      const newIndex = Math.floor(Math.random() * pages.length);
+      randomLink.href = pages[newIndex];
+    });
+  })
+  .catch(err => console.error(err));
+</script>
+
+</body>
+</html>

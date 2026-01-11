@@ -75,6 +75,14 @@
       margin: 0 auto;
     }
 
+    .fullsize img {
+      width: auto !important;
+      height: auto !important;
+      max-width: none !important;
+      max-height: none !important;
+      object-fit: unset !important;
+    }
+
     .caption {
       position: absolute;
       top: 85%;
@@ -120,13 +128,14 @@
     }
 
     .big-text {
-      font-size: 30px;
+      font-size: 25px;
       padding: 0 20px;
     }
 
     @media (max-width: 768px) {
       .block {
         grid-template-columns: 1fr;
+        gap: 60px;
       }
 
       .carousel,
