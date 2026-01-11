@@ -397,6 +397,29 @@ main { padding-top: 100px; }
   .hero-text h1 { font-size: 3rem; }
 }
 
+@media (max-width: 600px) {
+  .masonry {
+    display: flex;            /* Переключаем на флекс для горизонтальной прокрутки */
+    overflow-x: auto;         /* Включаем прокрутку по горизонтали */
+    scroll-snap-type: x mandatory; /* Включаем эффект "прилипания" карточек */
+    gap: 15px;
+    padding-bottom: 20px;
+    columns: auto;            /* Отключаем колонки */
+  }
+
+  .card {
+    flex: 0 0 85%;            /* Ширина карточки - 85% от экрана */
+    scroll-snap-align: center; /* Центрируем карточку при скролле */
+    margin-bottom: 0;
+  }
+
+  /* Скрываем полосу прокрутки для чистоты дизайна */
+  .masonry::-webkit-scrollbar {
+    display: none;
+    }
+  }
+}
+
 /* cloud */
 @media (max-width: 768px) {
   .tag-cloud-title { font-size: 1.8rem; }
@@ -559,6 +582,55 @@ fetch('/pages.json') // или '/pages.js', если подключён как <
     });
   })
   .catch(err => console.error(err));
+
+
+
+
+// 2. Авто-карусель с поддержкой свайпов
+const slides = document.querySelectorAll('.slide');
+const carouselContainer = document.querySelector('.carousel');
+let currentSlide = 0;
+let touchStartX = 0;
+let touchEndX = 0;
+
+function showSlide(index) {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (index + slides.length) % slides.length;
+  slides[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+  showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+  showSlide(currentSlide - 1);
+}
+
+// Автопереключение
+let autoSlideInterval = setInterval(nextSlide, 5000);
+
+// Обработка свайпов
+carouselContainer.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+  clearInterval(autoSlideInterval); // Останавливаем авто-слайд при касании
+});
+
+carouselContainer.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+  // Перезапускаем авто-слайд
+  autoSlideInterval = setInterval(nextSlide, 5000);
+});
+
+function handleSwipe() {
+  const swipeDistance = touchStartX - touchEndX;
+  if (swipeDistance > 50) {
+    nextSlide(); // Свайп влево
+  } else if (swipeDistance < -50) {
+    prevSlide(); // Свайп вправо
+  }
+}
 </script>
 
 </body>
