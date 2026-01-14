@@ -1,103 +1,113 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Страница с картами и картинками</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      line-height: 1.6;
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    .block {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .images {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 10px;
-    }
-
-    .images img {
-      width: 100%;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-
-    .map {
-      width: 100%;
-      height: 300px;
-      border-radius: 8px;
-    }
-
-    @media (max-width: 768px) {
-      .block {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Вывески Бишкека — Эволюция дизайна</title>
+<link rel="stylesheet" href="index.css">
+<script src="signboards/signboards.js" defer></script>
 </head>
 <body>
 
-  <h1>Моя страница с картами и фотографиями</h1>
+<header id="nav">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">Бишкек • Вывески</a>
+    <button class="burger" id="burgerBtn">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="menu" id="mobileMenu">
+      <a href="../signboards/index.html">Вывески</a>
+      <a href="../mosaics/index.html">Мозаики</a>
+      <a href="../index.html">О проекте</a>
+    </nav>
+  </div>
+</header>
 
-  <!-- Первый блок -->
-  <section>
-    <div class="block">
-      <div class="images">
-        <img src="images/mixxStore_2.JPG" alt="Фото 1">
-        <img src="images/mixxStore_3.JPG" alt="Фото 2">
-      </div>
-      <iframe class="map"
-        src="https://www.google.com/maps/embed?pb=!4v1758968509129!6m8!1m7!1sXAHSPU3e-FD3EgDj9JEf3A!2m2!1d42.87543438959673!2d74.58581650906005!3f167.87!4f4.5!5f1.3357038177820932"
-        allowfullscreen="" loading="lazy"></iframe>
+<main>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-text">
+        <h1>СИМВОЛЫ В ГОРОДЕ И СИМВОЛЫ ГОРОДА</h1>
+        <p class="big-text">
+            Сочетание монументального советского дизайна и современных технологий интерфейса. Мы переосмысляем индустриальное наследие через призму чистоты и функциональности.
+        </p>
     </div>
-    <p>Это описание к первой фотографии и карте. Текст идёт ниже.</p>
-  </section>
+    <div class="hero-visual">
+        <div class="carousel">
+            <div class="slide active">
+                <img src="https://images.unsplash.com/photo-1552133457-ce1d2d33cdfb?auto=format&fit=crop&q=80" alt="Architecture">
+                <div class="caption">ОБЪЕКТ 01: АРХИТЕКТУРА</div>
+            </div>
+        </div>
+    </div>
+</section>
 
-  <!-- Второй блок -->
-  <section>
-    <div class="block">
-      <div class="images">
-        <img src="images/академия_наук_2_1.jpg" alt="Фото 2">
-        <img src="images/академия_наук_2_2.jpg" alt="Фото 3">
-        <img src="images/академия_наук_2_3.jpg" alt="Фото 3">
-        <img src="images/академия_наук_2_4.jpg" alt="Фото 3">
-        <img src="images/академия_наук_2_5.jpg" alt="Фото 3">
-        <img src="images/академия_наук_2_6.jpg" alt="Фото 3">
-        <img src="images/академия_наук_2_7.jpg" alt="Фото 3">
-        <img src="images/академия_наук_2_8.jpg" alt="Фото 3">
-      </div>
-      <iframe class="map"
-        src="https://maps.app.goo.gl/ni33HqYkMuLm5Z8QA"
-        allowfullscreen="" loading="lazy"></iframe>
+<!-- Галерея (Masonry / Mobile Scroll) -->
+<section class="gallery" id="gallery">
+    <div class="masonry">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1518599904199-0ca897819ddb?auto=format&fit=crop&q=80" alt="1">
+            <span>КОНСТРУКЦИЯ</span>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1527566446794-79cbd45a8bb2?auto=format&fit=crop&q=80" alt="2">
+            <span>МАТЕРИАЛ</span>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1555633514-abcee6ad93e1?auto=format&fit=crop&q=80" alt="3">
+            <span>ФОРМА</span>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?auto=format&fit=crop&q=80" alt="4">
+            <span>РИТМ</span>
+        </div>
     </div>
-    <p>Здесь три фотографии, карта и текст ниже.</p>
-  </section>
+</section>
 
-  <!-- Третий блок -->
-  <section>
-    <div class="block">
-      <div class="images">
-        <img src="images/сберегательная_касса_2_4.jpg" alt="Фото 5">
+
+<section class="manifesto-section">
+    <div class="manifesto-grid">
+      <div class="manifesto-title">// МАНИФЕСТ</div>
+      <div class="manifesto-content">
+        <p>Город — это живой текст. Вывески и мозаики Бишкека — это не просто реклама или декор, это слои нашей общей памяти.</p>
+        <p>Наш проект документирует каждый артефакт, чтобы сохранить человеческий масштаб города.</p>
       </div>
-      <iframe class="map"
-        src="https://www.google.com/maps/embed?pb=!4v1759036155945!6m8!1m7!1saI50uEC86z5FMiCGN35nwQ!2m2!1d42.88060427575697!2d74.61142293460337!3f181.27!4f-6.6299999999999955!5f0.7820865974627469" width="200" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="400" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        allowfullscreen="" loading="lazy"></iframe>
     </div>
-    <p>фотография + карта + текст.</p>
-  </section>
+</section>
+
+<section class="manifesto-section">
+    <div class="manifesto-grid reverse">
+      <div class="manifesto-title">// ЦЕЛЬ ПРОЕКТА</div>
+      <div class="manifesto-content">
+        <p>Мы верим, что сохранение визуального наследия — это путь к пониманию идентичности Бишкека.</p>
+        <p>Архивация форм, шрифтов и материалов позволяет нам увидеть город не как хаотичную застройку, а как галерею под открытым небом.</p>
+      </div>
+    </div>
+</section>
+
+<!-- Облако тегов (Floating Discovery) -->
+<section class="tag-cloud-container" id="discovery">
+    <h2 class="tag-cloud-title">Исследовать по тегам</h2>
+    <div class="tag-cloud">
+        <a href="#" class="tag size-l anim-1">АРХИТЕКТУРА</a>
+        <a href="#" class="tag size-m anim-2">УТОПИЯ</a>
+        <a href="#" class="tag size-s anim-3">МОЗАИКА</a>
+        <a href="#" class="tag size-l anim-2">БЕТОН</a>
+        <a href="#" class="tag size-m anim-1">МОДЕРНИЗМ</a>
+        <a href="#" class="tag size-s anim-3">ГЕОМЕТРИЯ</a>
+    </div>
+</section>
+
+
+<section class="navigation">
+<h2>На что поглазеть?</h2>
+<div class="nav-grid">
+  <a class="nav-card" href="./29.html"><span>01 / ВЫВЕСКИ</span><h3>Изучить вывески</h3></a>
+  <a class="nav-card" href="../mosaics/index.html"><span>02 / МОЗАИКИ</span><h3>Изучить мозаики</h3></a>
+  <a id="randomLink" class="nav-card" href="#"><span>03 / РАНДОМ</span><h3>Показать случайный объект</h3></a>
+</div>
+</section>
+</main>
 
 </body>
 </html>

@@ -1,42 +1,112 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Вывески Бишкека</title>
-  <link rel="stylesheet" href="css/style_sub.css">
-  <script src="js/script_sub.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Вывески Бишкека — Эволюция дизайна</title>
+
+<link rel="stylesheet" href="index.css">
+<script src="signboards.js" defer></script>
 </head>
 
 <body>
-  <h1>Киевская д155. Витрины магазинов</h1>
 
-  <p class="big-text">Эволюция вывесок и дизайна.</p>
-  <p class="big-text">Красивый пример того, как простая вывеска может передавать дух эпохи.</p>
+<header id="nav">
+  <div class="header-inner">
+    <a href="../index.html" class="logo">Бишкек • Вывески</a>
+    <button class="burger" id="burgerBtn">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="menu" id="mobileMenu">
+      <a href="../signboards/index.html">Вывески</a>
+      <a href="../mosaics/index.html">Мозаики</a>
+      <a href="../index.html">О проекте</a>
+    </nav>
+  </div>
+</header>
 
-  <!-- Первый блок -->
-  <section>
-    <div class="block">
-      <div class="carousel">
-        <div class="slide active">
-          <div class="img-wrapper">
-            <img src="images/mixxStore_3_cut.jpg">
-            <div class="caption">Лето 2025</div>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="img-wrapper">
-            <img src="images/mixxStore_2.JPG">
-            <div class="caption">Осень 2023</div>
-          </div>
-        </div>
-        <div class="dots"></div>  <!-- контейнер для точек -->
-      </div>
-      <iframe class="map"
-        src="https://www.google.com/maps/embed?pb=!4v1762074495807!6m8!1m7!1s1ERPdw_zCGRC7J1KJfOrHw!2m2!1d42.87542940997766!2d74.58595307769701!3f160.8419115838219!4f0.6999427996125291!5f3.276484656830229"
-        allowfullscreen="" loading="lazy"></iframe>
+<main>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>ПАВИЛЬОН АК-СУУ / СОКИ-ВОДЫ</h1>
+      <p class="big-text">
+        Включённый в список государственных памятников истории и культуры, павильон долгое время находился в заброшенном состоянии. Он был построен в конце 50-х годов, а последний ремонт проводился в 80-х. В 2017 году павильон оградили, предположительно под снос, что вызвало обеспокоенность горожан. В 2024 году здание перешло на баланс мэрии, а уже в 2025 году фонд «Калыбай Херитейдж» (тот самый, который занимается реставрацией планетария) инвестировал в восстановление памятника.
+      </p>
     </div>
-    <button id="toggleSize">Посмотреть в оригинальном размере</button>
+    <div class="carousel">
+      <div class="slide active">
+        <img src="../images/соки_воды_1.jpg" alt="ФОТО С САЙТА 24.KG">
+        <div class="caption">ФОТО С САЙТА 24.KG</div>
+      </div>
+      <div class="slide active">
+        <img src="../images/соки_воды_2_1.jpg" alt="ОСЕНЬ 2025. В ПРОЦЕССЕ РЕСТАВРАЦИИ">
+        <div class="caption">ОСЕНЬ 2025. В ПРОЦЕССЕ РЕСТАВРАЦИИ</div>
+      </div>
+      <div class="slide active">
+        <img src="../images/соки_воды_2_2.jpg" alt="ОСЕНЬ 2025. В ПРОЦЕССЕ РЕСТАВРАЦИИ">
+        <div class="caption">ОСЕНЬ 2025. В ПРОЦЕССЕ РЕСТАВРАЦИИ</div>
+      </div>
+      <div class="slide active">
+        <img src="../images/соки_воды_2_3.jpg" alt="ОСЕНЬ 2025. В ПРОЦЕССЕ РЕСТАВРАЦИИ">
+        <div class="caption">ОСЕНЬ 2025. В ПРОЦЕССЕ РЕСТАВРАЦИИ</div>
+      </div>
+      <div class="slide active">
+        <img src="../images/соки_воды_2_4.jpg" alt="ОСЕНЬ 2025. В ПРОЦЕССЕ РЕСТАВРАЦИИ">
+        <div class="caption">ОСЕНЬ 2025. В ПРОЦЕССЕ РЕСТАВРАЦИИ</div>
+      </div>
+    </div>
   </section>
+
+  <section class="gallery">
+    <div class="masonry">
+      <div class="card"><img src="../images/соки_воды_1.jpg"><span>ФОТО С САЙТА 24.KG</span></div>
+      <div class="card"><img src="../images/соки_воды_2_1.jpg"><span>ОСЕНЬ 2025. В ПРОЦЕССЕ РЕСТАВРАЦИИ</span></div>
+      <div class="card"><img src="../images/соки_воды_2_2.jpg"><span>ОСЕНЬ 2025. В ПРОЦЕССЕ РЕСТАВРАЦИИ</span></div>
+      <div class="card"><img src="../images/соки_воды_2_3.jpg"><span>ОСЕНЬ 2025. В ПРОЦЕССЕ РЕСТАВРАЦИИ</span></div>
+      <div class="card"><img src="../images/соки_воды_2_4.jpg"><span>ОСЕНЬ 2025. В ПРОЦЕССЕ РЕСТАВРАЦИИ</span></div>
+    </div>
+  </section>
+  <section class="map-section">
+    <div class="map-inner">
+      <p>// ТЕЛЕПОРТ В 2015 </p>
+      <iframe class="map"
+        src="https://www.google.com/maps/embed?pb=!4v1768362362203!6m8!1m7!1s0UgBm4Cg8C0L3jeYjNziHQ!2m2!1d42.87665656794115!2d74.60704564512105!3f107.22779786457048!4f22.796761224141335!5f0.4524886984467462"
+          width="600"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+
+
+  <!-- SECTION: DISCOVERY CLOUD -->
+<section class="tag-cloud-container">
+  <h2 class="tag-cloud-title">СВЯЗАННЫЕ МАТЕРИАЛЫ</h2>
+
+  <div class="tag-cloud">
+    <a href="https://kaktus.media/doc/460837_istoricheskiy_pavilon_soki_vody_prevratilsia_v_sklad.html" class="tag size-s anim-3">В 2022 Ак-Суу был складом</a>
+    <a href="https://24.kg/obschestvo/349444_znamenityiy_pavilon_ak-suu_soki-vodyi_nakonets-to_nachali_rekonstruirovat_/" class="tag size-m anim-3">Реставрация в 2025</a>
+    <a href="https://24.kg/obschestvo/267002_znamenityiy_pavilon_ak-suu_soki-vodyi_vbishkeke_otrestavriruyut/" class="tag size-m anim-3">Новость о планируемой реставрации 2023</a>
+    <a href="https://kaktus.media/doc/534443_kak_chastnyy_fond_vozvrashaet_kyrgyzstany_zabytye_simvoly:_istoriia_kalybay_heriteydj.html" class="tag size-m anim-3">Фонд Калыбай Херитейдж реставрирует павильон</a>
+  </div>
+</section>
+
+  <section class="navigation">
+    <h2>На что поглазеть?</h2>
+    <div class="nav-grid">
+      <a class="nav-card" href="./29.html"><span>01 / ВЫВЕСКИ</span><h3>Идем к следующей вывеске!</h3></a>
+      <a class="nav-card" href="../mosaics/index.html"><span>02 / МОЗАИКИ</span><h3>Изучить мозаики</h3></a>
+      <a id="randomLink" class="nav-card" href="#"><span>03 / РАНДОМ</span><h3>Показать случайный объект</h3></a>
+      <a class="nav-card" href="../index.html"><span>04 / ИНФО. ГЛАВНАЯ</span><h3>Манифест проекта</h3></a>
+    </div>
+  </section>
+</main>
+
+<div class="lightbox" id="lightbox"><img src=""></div>
+
+
 </body>
 </html>
