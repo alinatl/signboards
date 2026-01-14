@@ -518,12 +518,51 @@ main { padding-top: 100px; }
   .tag.size-m { font-size: 0.9rem; }
 }
 
-    /* Мобильная адаптация */
+/* Адаптив для мобильных устройств (Заголовок РЯДОМ с текстом) */
 @media (max-width: 768px) {
-.manifesto-grid {
-  grid-template-columns: 1fr;
-}
-.manifesto-content {
-  padding: 30px;
-}
+  .manifesto-grid {
+    /* Создаем узкую колонку для заголовка и широкую для текста */
+    grid-template-columns: 40px 1fr;
+    gap: 15px;
+    align-items: start;
+  }
+
+  .manifesto-grid.reverse {
+    /* Для реверсивного блока: текст слева, заголовок справа */
+    grid-template-columns: 1fr 40px;
+  }
+
+  .manifesto-title {
+    position: sticky;
+    top: 90px; /* Чуть выше, так как мобильный хедер обычно меньше */
+    font-size: 0.9rem;
+
+    /* Магия вертикального текста */
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
+    padding-top: 10px;
+  }
+
+  .manifesto-grid.reverse .manifesto-title {
+    grid-column: 2;
+    transform: rotate(0deg); /* Для правой стороны вращаем иначе */
+    text-align: left;
+  }
+
+  .manifesto-content {
+    padding: 25px 20px; /* Уменьшаем отступы, чтобы текст не был слишком узким */
+    border-left-width: 4px; /* Делаем линию чуть тоньше для мобилок */
+  }
+
+  .manifesto-grid.reverse .manifesto-content {
+    grid-column: 1;
+    border-right-width: 4px;
+    border-left: none;
+  }
+
+  .manifesto-content p {
+    font-size: 1.05rem; /* Немного уменьшаем шрифт текста */
+    line-height: 1.5;
+  }
 }
