@@ -539,7 +539,127 @@ main { padding-top: 100px; }
 }
 
 
+/* СЕКЦИЯ О СОЗДАТЕЛЕ */
+.about-creator {
+  max-width: 1400px;
+  margin: 100px auto 60px;
+  padding: 0 2rem;
+}
 
+.creator-inner {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Декоративный элемент на фоне */
+.creator-inner::after {
+  content: "CONTACT";
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  font-family: 'SovietStyleCyrilic', sans-serif;
+  font-size: 8rem;
+  color: var(--accent-red);
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.creator-badge {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.7rem;
+  background: var(--accent-red);
+  color: #fff;
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+}
+
+.creator-header h2 {
+  font-family: 'SovietStyleCyrilic', sans-serif;
+  font-size: 2.2rem;
+  margin: 0;
+  line-height: 1.1;
+  color: var(--text-main);
+}
+
+.creator-content p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-dim);
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+.creator-email {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  color: var(--text-main);
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.creator-email .email-label {
+  color: var(--accent-red);
+  font-size: 0.8rem;
+}
+
+.creator-email .email-address {
+  border-bottom: 2px solid var(--accent-red);
+  padding-bottom: 2px;
+}
+
+.creator-email svg {
+  transition: transform 0.3s ease;
+}
+
+.creator-email:hover {
+  color: var(--accent-red);
+}
+
+.creator-email:hover svg {
+  transform: translateX(8px);
+}
+
+/* Адаптив */
+@media (max-width: 992px) {
+  .creator-inner {
+    grid-template-columns: 1fr;
+    padding: 40px;
+    gap: 20px;
+  }
+
+  .creator-inner::after {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .creator-inner {
+    padding: 30px 20px;
+  }
+
+  .creator-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .creator-email {
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+  }
+}
 
 
 /* Адаптив для мобильных устройств */
