@@ -391,7 +391,84 @@ main { padding-top: 100px; }
   margin-bottom: 20px;
 }
 
+/* ТЕКСТ ПЕРЕД НАВИГАЦИЕЙ */
+/* ПРЕДИСЛОВИЕ К НАВИГАЦИИ */
+.nav-preface {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--glass-border);
+}
 
+.preface-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.preface-item:hover {
+  background: #fff;
+  transform: translateY(-5px);
+}
+
+.preface-number {
+  font-family: 'SovietStyleCyrilic', sans-serif;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--accent-red);
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.preface-text h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  letter-spacing: 1px;
+  color: var(--text-main);
+  text-transform: uppercase;
+}
+
+.preface-text p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.preface-text strong {
+  color: var(--text-main);
+  border-bottom: 1px solid var(--accent-red);
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+  .nav-preface {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .preface-number {
+    font-size: 2.2rem;
+  }
+
+  .preface-item {
+    padding: 15px 0;
+    background: none !important; /* Убираем фон на мобилках для легкости */
+    border-bottom: 1px dashed var(--glass-border);
+  }
+
+  .preface-item:last-child {
+    border-bottom: none;
+  }
+}
 
 /* СТИЛИЗАЦИЯ ССЫЛКИ */
 .inline-link {
