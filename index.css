@@ -351,7 +351,7 @@ main { padding-top: 100px; }
 
 .manifesto-title {
   font-family: 'SovietStyleCyrilic', sans-serif;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   color: var(--accent-red);
   letter-spacing: 2px;
   font-weight: bold;
@@ -547,7 +547,7 @@ main { padding-top: 100px; }
   .manifesto-title {
     position: sticky;
     top: 90px; /* Чуть выше, так как мобильный хедер обычно меньше */
-    font-size: 0.9rem;
+    font-size: 1.5rem;
 
     /* Магия вертикального текста */
     writing-mode: vertical-rl;
