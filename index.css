@@ -5,6 +5,25 @@
   font-display: swap;
 }
 
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwtsZfrxE.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwv8ZfrxE.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
 :root {
   --bg-main: #fbfbfb;           /* Основной светлый фон */
   --accent-red: #CC0000;         /* Фирменный красный */
@@ -309,80 +328,6 @@ main { padding-top: 100px; }
 .menu a:hover { color: var(--accent-red); }
 
 
-
-/* ===== DISCOVERY CLOUD STYLES ===== */
-.tag-cloud-container {
-  max-width: 1400px;
-  margin: 80px auto 120px;
-  padding: 0 2rem;
-  text-align: center;
-}
-
-.tag-cloud-title {
-  font-family: 'SovietStyleCyrilic', sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 40px;
-  color: var(--text-main);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.tag-cloud {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  perspective: 1000px;
-}
-
-/* Основной стиль "пилюли" */
-.tag {
-  display: inline-block;
-  text-decoration: none;
-  color: var(--text-main);
-  background: rgba(255, 255, 255, 0.5); /* Glassmorphism */
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid var(--glass-border);
-  border-radius: 50px;
-  padding: 10px 24px;
-  font-weight: 500;
-  white-space: nowrap;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-}
-
-/* Размеры шрифтов для эффекта облака */
-.tag.size-s { font-size: 0.85rem; padding: 8px 18px; opacity: 0.8; }
-.tag.size-m { font-size: 1.1rem; padding: 12px 28px; }
-.tag.size-l { font-size: 1.4rem; padding: 14px 35px; font-weight: 600; }
-
-/* Ховер-эффект */
-.tag:hover {
-  background: var(--accent-red);
-  color: #ffffff !important;
-  border-color: var(--accent-red);
-  transform: scale(1.1) translateY(-5px);
-  box-shadow: 0 10px 25px rgba(204, 0, 0, 0.3);
-  z-index: 10;
-  animation-play-state: paused; /* Останавливаем плавание при наведении */
-}
-
-/* Анимация "плавания" (Floating) */
-@keyframes float {
-  0% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-6px) rotate(1deg); }
-  66% { transform: translateY(4px) rotate(-1deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
-}
-
-/* Разные скорости для естественного вида */
-.anim-1 { animation: float 5s ease-in-out infinite; }
-.anim-2 { animation: float 7s ease-in-out infinite; animation-delay: 1s; }
-.anim-3 { animation: float 6s ease-in-out infinite; animation-delay: 0.5s; }
-
-
 /* MANIFESTO SECTION */
 .manifesto-section {
   max-width: 1400px;
@@ -445,6 +390,80 @@ main { padding-top: 100px; }
   color: var(--text-main);
   margin-bottom: 20px;
 }
+
+
+
+/* СТИЛИЗАЦИЯ ССЫЛКИ */
+.inline-link {
+    display: inline-block;
+    font-family: 'Unbounded', sans-serif; /* Стильный шрифт */
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #000; /* Цвет текста */
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 5px;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+
+    /* Эффект легкого движения (Floating) */
+    animation: floatingLink 3s ease-in-out infinite;
+
+    /* Эффект появления при скролле (современный CSS) */
+    view-timeline-name: --link-reveal;
+    view-timeline-axis: block;
+    animation-timeline: --link-reveal;
+    animation-name: revealOnScroll;
+    animation-range: entry 10% cover 30%;
+    animation-fill-mode: both;
+}
+
+/* Анимированная линия под ссылкой */
+.inline-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: currentColor;
+    transform: scaleX(0.3);
+    transform-origin: bottom left;
+    transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.inline-link:hover::after {
+    transform: scaleX(1);
+}
+
+.inline-link:hover {
+    color: #ff4500; /* Акцентный цвет при наведении (например, оранжевый) */
+}
+
+/* Анимация №1: Легкое покачивание (всегда активно) */
+@keyframes floatingLink {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Анимация №2: Движение именно при скролле (выезжает сбоку) */
+@keyframes revealOnScroll {
+    from {
+        opacity: 0;
+        transform: translateX(-50px) skewX(-10deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) skewX(0deg);
+    }
+}
+
+
+
+
 
 /* Адаптив для мобильных устройств */
 @media (max-width: 768px) {
@@ -510,13 +529,6 @@ main { padding-top: 100px; }
   }
 }
 
-
-/* cloud */
-@media (max-width: 768px) {
-  .tag-cloud-title { font-size: 1.8rem; }
-  .tag.size-l { font-size: 1.1rem; padding: 10px 22px; }
-  .tag.size-m { font-size: 0.9rem; }
-}
 
 /* Адаптив для мобильных устройств (Заголовок РЯДОМ с текстом) */
 @media (max-width: 768px) {
