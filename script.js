@@ -20,7 +20,6 @@ burgerBtn.addEventListener('click', (e) => {
 });
 document.addEventListener('click', () => mobileMenu.classList.remove('open'));
 
-
 <!--// 2. Авто-карусель-->
 <!--const slides = document.querySelectorAll('.slide');-->
 <!--let currentSlide = 0;-->
