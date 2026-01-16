@@ -103,8 +103,12 @@ fetch('../pages.json')
     return res.json();
   })
   .then(pages => {
-    // 1. Получаем массив всех ключей (путей к страницам) из объекта
-    const urls = Object.keys(pages);
+    // 1. Получаем ключи и сразу добавляем к ним ../
+    const urls = Object.keys(pages).map(url => {
+      // Убираем начальный слэш, если он есть, чтобы не было ..//
+      const cleanUrl = url.startsWith('/') ? url.substring(1) : url;
+      return '../' + cleanUrl;
+    });
 
     // Функция для выбора случайного URL
     function getRandomUrl() {
@@ -113,12 +117,15 @@ fetch('../pages.json')
     }
 
     // 2. Устанавливаем случайную ссылку сразу при загрузке
-    randomLink.href = getRandomUrl();
-
-    // 3. (Опционально) Обновляем ссылку ПЕРЕД переходом,
-    // чтобы при каждом клике был новый результат
-    randomLink.addEventListener('mousedown', () => {
+    if (urls.length > 0) {
       randomLink.href = getRandomUrl();
+    }
+
+    // 3. Обновляем ссылку при клике (mousedown срабатывает быстрее обычного click)
+    randomLink.addEventListener('mousedown', () => {
+      if (urls.length > 0) {
+        randomLink.href = getRandomUrl();
+      }
     });
   })
   .catch(err => console.error('Ошибка:', err));
