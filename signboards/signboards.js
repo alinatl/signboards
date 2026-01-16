@@ -107,7 +107,7 @@ fetch('../pages.json')
     const urls = Object.keys(pages).map(url => {
       // Убираем начальный слэш, если он есть, чтобы не было ..//
       const cleanUrl = url.startsWith('/') ? url.substring(1) : url;
-      return '../' + cleanUrl;
+      return '../../' + cleanUrl;
     });
 
     // Функция для выбора случайного URL
