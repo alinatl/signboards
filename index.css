@@ -705,6 +705,16 @@ header.hidden { transform: translateY(-100%); }
     transform: translateY(-3px);
 }
 
+/* Плавный скролл для всей страницы */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Отступ сверху при переходе по якорю, чтобы хедер не закрывал заголовок */
+.about-creator {
+  scroll-margin-top: 100px; /* Высота вашего хедера + небольшой запас */
+}
+
 /* ==========================================================================
    12. АНИМАЦИИ
    ========================================================================== */
@@ -723,6 +733,7 @@ header.hidden { transform: translateY(-100%); }
   from { opacity: 0; transform: translateX(-50px) skewX(-10deg); }
   to { opacity: 1; transform: translateX(0) skewX(0deg); }
 }
+
 
 /* ==========================================================================
    13. АДАПТИВНОСТЬ (MEDIA QUERIES)
