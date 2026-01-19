@@ -1,11 +1,14 @@
-/* Импорт шрифтов */
+/* ==========================================================================
+   1. ШРИФТЫ И ПЕРЕМЕННЫЕ
+   ========================================================================== */
+
 @font-face {
   font-family: 'SovietStyleCyrilic';
   src: url('fonts/SovietStyleCyrilic-Regular.woff') format('woff');
   font-display: swap;
 }
 
-/* cyrillic-ext */
+/* Unbounded - cyrillic-ext */
 @font-face {
   font-family: 'Unbounded';
   font-style: normal;
@@ -14,7 +17,8 @@
   src: url(https://fonts.gstatic.com/s/unbounded/v12/Yq6W-LOTXCb04q32xlpwtsZfrxE.woff2) format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
-/* cyrillic */
+
+/* Unbounded - cyrillic */
 @font-face {
   font-family: 'Unbounded';
   font-style: normal;
@@ -25,18 +29,23 @@
 }
 
 :root {
-  --bg-main: #fbfbfb;           /* Основной светлый фон */
-  --accent-red: #CC0000;         /* Фирменный красный */
+  --bg-main: #fbfbfb;
+  --accent-red: #CC0000;
   --glass-bg: rgba(255, 255, 255, 0.8);
   --glass-border: rgba(0, 0, 0, 0.1);
-  --text-main: #1a1a1a;          /* Темный текст */
-  --text-dim: #666;              /* Серый текст */
+  --text-main: #1a1a1a;
+  --text-dim: #666;
   --card-bg: #ffffff;
+  --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* ==========================================================================
+   2. ГЛОБАЛЬНЫЕ СТИЛИ И БАЗА
+   ========================================================================== */
 
 * {
   box-sizing: border-box;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--transition-base);
 }
 
 body {
@@ -58,7 +67,12 @@ body::before {
   pointer-events: none;
 }
 
-/* ===== ХЕДЕР ===== */
+main { padding-top: 100px; }
+
+/* ==========================================================================
+   3. ХЕДЕР И НАВИГАЦИОННОЕ МЕНЮ
+   ========================================================================== */
+
 header {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -88,10 +102,50 @@ header.hidden { transform: translateY(-100%); }
   text-decoration: none;
 }
 
-/* ===== КОНТЕНТ ===== */
-main { padding-top: 100px; }
+.burger {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
-/* ===== HERO SECTION ===== */
+.burger span {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--text-main);
+}
+
+.menu {
+  position: fixed;
+  top: 75px; right: 2rem;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.menu.open { display: flex; }
+
+.menu a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-family: 'SovietStyleCyrilic', sans-serif;
+  font-size: 1.5rem;
+}
+
+.menu a:hover { color: var(--accent-red); }
+
+/* ==========================================================================
+   4. HERO SECTION (ГЛАВНЫЙ ЭКРАН)
+   ========================================================================== */
+
 .hero {
   max-width: 1400px;
   margin: 0 auto 80px;
@@ -119,7 +173,10 @@ main { padding-top: 100px; }
   line-height: 1.6;
 }
 
-/* ===== КАРУСЕЛЬ ===== */
+/* ==========================================================================
+   5. КАРУСЕЛЬ
+   ========================================================================== */
+
 .carousel {
   position: relative;
   height: 500px;
@@ -159,7 +216,72 @@ main { padding-top: 100px; }
   z-index: 10;
 }
 
-/* ===== ГАЛЕРЕЯ (МАСОНРИ) ===== */
+/* ==========================================================================
+   6. МАНИФЕСТ (MANIFESTO)
+   ========================================================================== */
+
+.manifesto-section {
+  max-width: 1400px;
+  margin: 100px auto;
+  padding: 0 2rem;
+}
+
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 80px;
+}
+
+.manifesto-grid.reverse {
+  grid-template-columns: 2fr 1fr;
+}
+
+.manifesto-title {
+  font-family: 'SovietStyleCyrilic', sans-serif;
+  font-size: 2.5rem;
+  color: var(--accent-red);
+  letter-spacing: 2px;
+  font-weight: bold;
+  position: sticky;
+  top: 120px;
+  align-self: start;
+}
+
+.manifesto-grid.reverse .manifesto-title {
+  text-align: right;
+  grid-column: 2;
+}
+
+.manifesto-content {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  padding: 60px;
+  border-radius: 20px;
+  border-left: 8px solid var(--accent-red);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.manifesto-grid.reverse .manifesto-content {
+  grid-column: 1;
+  grid-row: 1;
+  border-left: none;
+  border-right: 8px solid var(--accent-red);
+}
+
+.manifesto-content p {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--text-main);
+  margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   7. ГАЛЕРЕЯ (МАСОНРИ)
+   ========================================================================== */
+
 .gallery {
   max-width: 1400px;
   margin: 0 auto 100px;
@@ -181,16 +303,12 @@ main { padding-top: 100px; }
   border: 1px solid var(--glass-border);
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 
+  /* Scroll Animation */
   view-timeline-name: --card-reveal;
   view-timeline-axis: block;
   animation: reveal linear both;
   animation-timeline: --card-reveal;
   animation-range: entry 5% cover 25%;
-}
-
-@keyframes reveal {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .card img { width: 100%; display: block; cursor: zoom-in; }
@@ -205,7 +323,10 @@ main { padding-top: 100px; }
   border-top: 1px solid var(--glass-border);
 }
 
-/* ===== КАРТА ===== */
+/* ==========================================================================
+   8. КАРТА И ЛОКАЦИЯ
+   ========================================================================== */
+
 .map-section {
   background: #d1d1d1;
   padding: 80px 0;
@@ -229,7 +350,10 @@ main { padding-top: 100px; }
   background: #fff;
 }
 
-/* ===== НАВИГАЦИЯ ===== */
+/* ==========================================================================
+   9. НАВИГАЦИЯ И ПРЕДИСЛОВИЕ
+   ========================================================================== */
+
 .navigation {
   max-width: 1400px;
   margin: 100px auto;
@@ -242,157 +366,6 @@ main { padding-top: 100px; }
   margin-bottom: 40px;
 }
 
-.nav-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-
-.nav-card {
-  background: #fff;
-  border: 1px solid var(--glass-border);
-  padding: 30px;
-  text-decoration: none;
-  color: inherit;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-}
-
-.nav-card:hover {
-  border-color: var(--accent-red);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-}
-
-.nav-card span {
-  font-family: 'SovietStyleCyrilic', sans-serif;
-  color: var(--accent-red);
-  font-size: 1.7rem;
-}
-
-.nav-card h3 { margin: 10px 0 0; font-size: 1.2rem; }
-
-/* ===== LIGHTBOX ===== */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(10px);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  cursor: zoom-out;
-}
-
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90%; max-height: 85%; object-fit: contain; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
-
-/* ===== МЕНЮ ===== */
-.burger {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.burger span {
-  display: block;
-  width: 28px;
-  height: 2px;
-  background: var(--text-main);
-}
-
-.menu {
-  position: fixed;
-  top: 75px; right: 2rem;
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 1px solid var(--glass-border);
-  display: none;
-  flex-direction: column;
-  gap: 1rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.menu.open { display: flex; }
-.menu a {
-  text-decoration: none;
-  color: var(--text-main);
-  font-family: 'SovietStyleCyrilic', sans-serif;
-  font-size: 1.5rem;
-}
-.menu a:hover { color: var(--accent-red); }
-
-
-/* MANIFESTO SECTION */
-.manifesto-section {
-  max-width: 1400px;
-  margin: 100px auto;
-  padding: 0 2rem;
-}
-
-/* Базовая сетка (Заголовок слева, Текст справа) */
-.manifesto-grid {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 40px;
-  align-items: start;
-  margin-bottom: 80px; /* Отступ между блоками манифеста */
-}
-
-/* Реверсивная сетка (Текст слева, Заголовок справа) */
-.manifesto-grid.reverse {
-  grid-template-columns: 2fr 1fr;
-}
-
-.manifesto-title {
-  font-family: 'SovietStyleCyrilic', sans-serif;
-  font-size: 2.5rem;
-  color: var(--accent-red);
-  letter-spacing: 2px;
-  font-weight: bold;
-  position: sticky;
-  top: 120px;
-  align-self: start;
-}
-
-/* Выравнивание заголовка в реверсивном блоке */
-.manifesto-grid.reverse .manifesto-title {
-  text-align: right;
-  grid-column: 2; /* Явно ставим во вторую колонку */
-}
-
-.manifesto-content {
-  background: var(--glass-bg);
-  backdrop-filter: blur(15px);
-  border: 1px solid var(--glass-border);
-  padding: 60px;
-  border-radius: 20px;
-  border-left: 8px solid var(--accent-red); /* Красная линия слева по умолчанию */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-/* Изменение линии декора для реверсивного блока */
-.manifesto-grid.reverse .manifesto-content {
-  grid-column: 1; /* Контент в первую колонку */
-  grid-row: 1;    /* В ту же строку, что и заголовок */
-  border-left: none;
-  border-right: 8px solid var(--accent-red); /* Линия справа */
-}
-
-.manifesto-content p {
-  font-size: 1.25rem;
-  line-height: 1.8;
-  color: var(--text-main);
-  margin-bottom: 20px;
-}
-
-/* ТЕКСТ ПЕРЕД НАВИГАЦИЕЙ */
-/* ПРЕДИСЛОВИЕ К НАВИГАЦИИ */
 .nav-preface {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -409,7 +382,6 @@ main { padding-top: 100px; }
   padding: 20px;
   background: rgba(255, 255, 255, 0.4);
   border-radius: 12px;
-  transition: transform 0.3s ease;
 }
 
 .preface-item:hover {
@@ -443,52 +415,48 @@ main { padding-top: 100px; }
   margin: 0;
 }
 
-.preface-text strong {
-  color: var(--text-main);
-  border-bottom: 1px solid var(--accent-red);
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
 }
 
-/* Адаптив для мобильных */
-@media (max-width: 768px) {
-  .nav-preface {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-
-  .preface-number {
-    font-size: 2.2rem;
-  }
-
-  .preface-item {
-    padding: 15px 0;
-    background: none !important; /* Убираем фон на мобилках для легкости */
-    border-bottom: 1px dashed var(--glass-border);
-  }
-
-  .preface-item:last-child {
-    border-bottom: none;
-  }
+.nav-card {
+  background: #fff;
+  border: 1px solid var(--glass-border);
+  padding: 30px;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
 }
 
-/* СТИЛИЗАЦИЯ ССЫЛКИ */
+.nav-card:hover {
+  border-color: var(--accent-red);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.nav-card span {
+  font-family: 'SovietStyleCyrilic', sans-serif;
+  color: var(--accent-red);
+  font-size: 1.7rem;
+}
+
 .inline-link {
     display: inline-block;
-    font-family: 'Unbounded', sans-serif; /* Стильный шрифт */
+    font-family: 'Unbounded', sans-serif;
     font-weight: 700;
     font-size: 1.2rem;
     text-transform: uppercase;
     text-decoration: none;
-    color: #000; /* Цвет текста */
+    color: #000;
     letter-spacing: 1px;
     position: relative;
     padding-bottom: 5px;
     margin-top: 10px;
-    transition: color 0.3s ease;
-
-    /* Эффект легкого движения (Floating) */
     animation: floatingLink 3s ease-in-out infinite;
-
-    /* Эффект появления при скролле (современный CSS) */
+    /* Reveal effect */
     view-timeline-name: --link-reveal;
     view-timeline-axis: block;
     animation-timeline: --link-reveal;
@@ -497,49 +465,24 @@ main { padding-top: 100px; }
     animation-fill-mode: both;
 }
 
-/* Анимированная линия под ссылкой */
 .inline-link::after {
     content: '';
     position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
+    width: 100%; height: 2px;
+    bottom: 0; left: 0;
     background-color: currentColor;
     transform: scaleX(0.3);
     transform-origin: bottom left;
     transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
 }
 
-.inline-link:hover::after {
-    transform: scaleX(1);
-}
+.inline-link:hover::after { transform: scaleX(1); }
+.inline-link:hover { color: #ff4500; }
 
-.inline-link:hover {
-    color: #ff4500; /* Акцентный цвет при наведении (например, оранжевый) */
-}
+/* ==========================================================================
+   10. СЕКЦИЯ О СОЗДАТЕЛЕ (CONTACT)
+   ========================================================================== */
 
-/* Анимация №1: Легкое покачивание (всегда активно) */
-@keyframes floatingLink {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-5px); }
-    100% { transform: translateY(0px); }
-}
-
-/* Анимация №2: Движение именно при скролле (выезжает сбоку) */
-@keyframes revealOnScroll {
-    from {
-        opacity: 0;
-        transform: translateX(-50px) skewX(-10deg);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0) skewX(0deg);
-    }
-}
-
-
-/* СЕКЦИЯ О СОЗДАТЕЛЕ */
 .about-creator {
   max-width: 1400px;
   margin: 100px auto 60px;
@@ -558,12 +501,10 @@ main { padding-top: 100px; }
   overflow: hidden;
 }
 
-/* Декоративный элемент на фоне */
 .creator-inner::after {
   content: "CONTACT";
   position: absolute;
-  right: -20px;
-  bottom: -20px;
+  right: -20px; bottom: -20px;
   font-family: 'SovietStyleCyrilic', sans-serif;
   font-size: 8rem;
   color: var(--accent-red);
@@ -587,16 +528,7 @@ main { padding-top: 100px; }
   font-family: 'SovietStyleCyrilic', sans-serif;
   font-size: 2.2rem;
   margin: 0;
-  line-height: 1.1;
   color: var(--text-main);
-}
-
-.creator-content p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: var(--text-dim);
-  margin-top: 0;
-  margin-bottom: 30px;
 }
 
 .creator-email {
@@ -608,170 +540,114 @@ main { padding-top: 100px; }
   font-family: 'Unbounded', sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
-  transition: color 0.3s ease;
 }
 
-.creator-email .email-label {
-  color: var(--accent-red);
-  font-size: 0.8rem;
+.creator-email:hover { color: var(--accent-red); }
+.creator-email:hover svg { transform: translateX(8px); }
+
+/* ==========================================================================
+   11. LIGHTBOX (ПРОСМОТР ФОТО)
+   ========================================================================== */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  cursor: zoom-out;
 }
 
-.creator-email .email-address {
-  border-bottom: 2px solid var(--accent-red);
-  padding-bottom: 2px;
+.lightbox.active { display: flex; }
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 85%;
+  object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
 }
 
-.creator-email svg {
-  transition: transform 0.3s ease;
+/* ==========================================================================
+   12. АНИМАЦИИ
+   ========================================================================== */
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.creator-email:hover {
-  color: var(--accent-red);
+@keyframes floatingLink {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
 }
 
-.creator-email:hover svg {
-  transform: translateX(8px);
+@keyframes revealOnScroll {
+  from { opacity: 0; transform: translateX(-50px) skewX(-10deg); }
+  to { opacity: 1; transform: translateX(0) skewX(0deg); }
 }
 
-/* Адаптив */
-@media (max-width: 992px) {
-  .creator-inner {
-    grid-template-columns: 1fr;
-    padding: 40px;
-    gap: 20px;
-  }
+/* ==========================================================================
+   13. АДАПТИВНОСТЬ (MEDIA QUERIES)
+   ========================================================================== */
 
-  .creator-inner::after {
-    font-size: 5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .creator-inner {
-    padding: 30px 20px;
-  }
-
-  .creator-header h2 {
-    font-size: 1.6rem;
-  }
-
-  .creator-email {
-    font-size: 0.9rem;
-    flex-wrap: wrap;
-  }
-}
-
-
-/* Адаптив для мобильных устройств */
-@media (max-width: 768px) {
-  .manifesto-grid,
-  .manifesto-grid.reverse {
-    grid-template-columns: 1fr; /* На мобилках всё в одну колонку */
-    gap: 20px;
-  }
-
-  .manifesto-grid.reverse .manifesto-title,
-  .manifesto-grid.reverse .manifesto-content {
-    grid-column: auto;
-    text-align: left;
-  }
-
-  .manifesto-grid.reverse .manifesto-content {
-    border-right: none;
-    border-left: 8px solid var(--accent-red); /* На мобилке возвращаем линию налево */
-  }
-
-  .manifesto-content {
-    padding: 30px;
-  }
-
-  .manifesto-title {
-    position: static; /* Отключаем липкость на мобильных для удобства */
-    font-size: 1.2rem;
-  }
-}
-
-/* ===== АДАПТИВ ===== */
+/* Планшеты (до 992px) */
 @media (max-width: 992px) {
   .hero { grid-template-columns: 1fr; }
   .carousel { height: 400px; }
   .masonry { columns: 2; }
+  .creator-inner { grid-template-columns: 1fr; padding: 40px; }
 }
 
-@media (max-width: 600px) {
-  .masonry { columns: 1; }
-  .hero-text h1 { font-size: 3rem; }
-}
-
-@media (max-width: 600px) {
-  .masonry {
-    display: flex;            /* Переключаем на флекс для горизонтальной прокрутки */
-    overflow-x: auto;         /* Включаем прокрутку по горизонтали */
-    scroll-snap-type: x mandatory; /* Включаем эффект "прилипания" карточек */
-    gap: 15px;
-    padding-bottom: 20px;
-    columns: auto;            /* Отключаем колонки */
-    align-items: center;
-  }
-
-  .card {
-    flex: 0 0 85%;            /* Ширина карточки - 85% от экрана */
-    scroll-snap-align: center; /* Центрируем карточку при скролле */
-    margin-bottom: 0;
-  }
-
-  /* Скрываем полосу прокрутки для чистоты дизайна */
-  .masonry::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-
-/* Адаптив для мобильных устройств (Заголовок РЯДОМ с текстом) */
+/* Мобильные (до 768px) */
 @media (max-width: 768px) {
+  /* Манифест с вертикальным текстом */
   .manifesto-grid {
-    /* Создаем узкую колонку для заголовка и широкую для текста */
     grid-template-columns: 40px 1fr;
     gap: 15px;
-    align-items: start;
   }
-
-  .manifesto-grid.reverse {
-    /* Для реверсивного блока: текст слева, заголовок справа */
-    grid-template-columns: 1fr 40px;
-  }
+  .manifesto-grid.reverse { grid-template-columns: 1fr 40px; }
 
   .manifesto-title {
     position: sticky;
-    top: 90px; /* Чуть выше, так как мобильный хедер обычно меньше */
+    top: 90px;
     font-size: 1.5rem;
-
-    /* Магия вертикального текста */
     writing-mode: vertical-rl;
     transform: rotate(180deg);
     white-space: nowrap;
-    padding-top: 10px;
   }
 
   .manifesto-grid.reverse .manifesto-title {
     grid-column: 2;
-    transform: rotate(0deg); /* Для правой стороны вращаем иначе */
-    text-align: left;
+    transform: rotate(0deg);
   }
 
-  .manifesto-content {
-    padding: 25px 20px; /* Уменьшаем отступы, чтобы текст не был слишком узким */
-    border-left-width: 4px; /* Делаем линию чуть тоньше для мобилок */
-  }
+  .manifesto-content { padding: 25px 20px; border-left-width: 4px; }
+  .manifesto-grid.reverse .manifesto-content { grid-column: 1; border-right-width: 4px; border-left: none; }
 
-  .manifesto-grid.reverse .manifesto-content {
-    grid-column: 1;
-    border-right-width: 4px;
-    border-left: none;
-  }
+  /* Навигация */
+  .nav-preface { grid-template-columns: 1fr; gap: 15px; }
+  .preface-item { padding: 15px 0; background: none !important; border-bottom: 1px dashed var(--glass-border); }
+}
 
-  .manifesto-content p {
-    font-size: 1.05rem; /* Немного уменьшаем шрифт текста */
-    line-height: 1.5;
+/* Маленькие экраны (до 600px) */
+@media (max-width: 600px) {
+  /* Masonry превращается в горизонтальный скролл */
+  .masonry {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 15px;
+    columns: auto;
   }
+  .masonry::-webkit-scrollbar { display: none; }
+
+  .card { flex: 0 0 85%; scroll-snap-align: center; margin-bottom: 0; }
+  .hero-text h1 { font-size: 3rem; }
+
+  .creator-inner { padding: 30px 20px; }
+  .creator-header h2 { font-size: 1.6rem; }
+  .creator-email { font-size: 0.9rem; flex-wrap: wrap; }
 }
