@@ -570,6 +570,134 @@ header.hidden { transform: translateY(-100%); }
   box-shadow: 0 20px 60px rgba(0,0,0,0.15);
 }
 
+
+/* ==========================================================================
+   STATS SECTION (ДИАГРАММА)
+   ========================================================================== */
+
+.monuments-stats {
+    max-width: 1400px;
+    margin: 0 auto 100px;
+    padding: 60px 2rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: center;
+}
+
+/* Стили диаграммы */
+.pie-chart {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    /* Рисуем сектор через conic-gradient */
+    background: conic-gradient(
+        var(--accent-red) calc(var(--percentage) * 1%),
+        #e0e0e0 0
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.pie-inner {
+    width: 180px;
+    height: 180px;
+    background: var(--bg-main);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pie-number {
+    font-family: 'SovietStyleCyrilic', sans-serif;
+    font-size: 3.5rem;
+    color: var(--accent-red);
+}
+
+.stats-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.stats-legend {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.stats-legend p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+.dot.red { background: var(--accent-red); }
+.dot.gray { background: #e0e0e0; }
+
+/* Текстовая часть */
+.stats-text h2 {
+    font-family: 'SovietStyleCyrilic', sans-serif;
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 25px;
+    color: var(--text-main);
+}
+
+.stats-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: var(--text-dim);
+}
+
+.stats-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stats-link {
+    font-family: 'Unbounded', sans-serif;
+    text-decoration: none;
+    color: #fff;
+    background: var(--text-main);
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: var(--transition-base);
+}
+
+.stats-link.secondary {
+    background: transparent;
+    border: 1px solid var(--text-main);
+    color: var(--text-main);
+}
+
+.stats-link:hover {
+    background: var(--accent-red);
+    border-color: var(--accent-red);
+    color: white;
+    transform: translateY(-3px);
+}
+
 /* ==========================================================================
    12. АНИМАЦИИ
    ========================================================================== */
@@ -599,6 +727,16 @@ header.hidden { transform: translateY(-100%); }
   .carousel { height: 400px; }
   .masonry { columns: 2; }
   .creator-inner { grid-template-columns: 1fr; padding: 40px; }
+
+.stats-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+}
+.stats-visual { margin-bottom: 30px; }
+.stats-links { justify-content: center; }
+.pie-chart { width: 200px; height: 200px; }
+.pie-inner { width: 140px; height: 140px; }
+.pie-number { font-size: 2.5rem; }
 }
 
 /* Мобильные (до 768px) */
@@ -651,3 +789,4 @@ header.hidden { transform: translateY(-100%); }
   .creator-header h2 { font-size: 1.6rem; }
   .creator-email { font-size: 0.9rem; flex-wrap: wrap; }
 }
+
