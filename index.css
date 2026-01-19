@@ -545,6 +545,13 @@ header.hidden { transform: translateY(-100%); }
 .creator-email:hover { color: var(--accent-red); }
 .creator-email:hover svg { transform: translateX(8px); }
 
+.creator-content p {
+  font-size: 1.25rem; /* Увеличиваем размер (было примерно 1rem) */
+  line-height: 1.7;    /* Увеличиваем межстрочный интервал для читаемости */
+  color: var(--text-main);
+  margin-bottom: 30px; /* Добавляем отступ до ссылки с почтой */
+}
+
 /* ==========================================================================
    11. LIGHTBOX (ПРОСМОТР ФОТО)
    ========================================================================== */
@@ -788,5 +795,10 @@ header.hidden { transform: translateY(-100%); }
   .creator-inner { padding: 30px 20px; }
   .creator-header h2 { font-size: 1.6rem; }
   .creator-email { font-size: 0.9rem; flex-wrap: wrap; }
+  .creator-content p {
+    font-size: 1.1rem; /* Чуть уменьшаем на мобильных, чтобы не перегружать экран */
+    line-height: 1.6;
+  }
 }
+
 
