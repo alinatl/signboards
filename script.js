@@ -14,12 +14,31 @@ window.addEventListener('scroll', () => {
 // 4. Меню
 const burgerBtn = document.getElementById('burgerBtn');
 const mobileMenu = document.getElementById('mobileMenu');
-burgerBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  mobileMenu.classList.toggle('open');
-});
-document.addEventListener('click', () => mobileMenu.classList.remove('open'));
+const spans = burgerBtn.querySelectorAll('span');
 
+burgerBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    mobileMenu.classList.toggle('active'); // Было 'open', стало 'active'
+
+    // Анимация крестика
+    if (mobileMenu.classList.contains('active')) {
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+    } else {
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+    }
+});
+
+// Закрытие при клике в любое место экрана
+document.addEventListener('click', () => {
+    mobileMenu.classList.remove('active');
+    spans[0].style.transform = 'none';
+    spans[1].style.opacity = '1';
+    spans[2].style.transform = 'none';
+});
 
 <!--// 2. Авто-карусель-->
 <!--const slides = document.querySelectorAll('.slide');-->
