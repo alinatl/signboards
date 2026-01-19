@@ -594,7 +594,7 @@ header.hidden { transform: translateY(-100%); }
 .stats-container {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
-    gap: 60px;
+    gap: 0px;
     align-items: center;
 }
 
